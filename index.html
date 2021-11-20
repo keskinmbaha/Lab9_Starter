@@ -69,21 +69,21 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button onclick="buttonClicked('Log')">Console Log</button>
+      <button onclick="buttonClicked('Error')">Console Error</button>
+      <button onclick="buttonClicked('Count')">Console Count</button>
+      <button onclick="buttonClicked('Warn')">Console Warn</button>
+      <button onclick="buttonClicked('Assert')">Console Assert</button>
+      <button onclick="buttonClicked('Clear')">Console Clear</button>
+      <button onclick="buttonClicked('Dir')">Console Dir</button>
+      <button onclick="buttonClicked('dirxml')">Console dirxml</button>
+      <button onclick="buttonClicked('Group Start')">Console Group Start</button>
+      <button onclick="buttonClicked('Group End')">Console Group End</button>
+      <button onclick="buttonClicked('Table')">Console Table</button>
+      <button onclick="buttonClicked('Start Timer')">Start Timer</button>
+      <button onclick="buttonClicked('End Timer')">End Timer</button>
+      <button onclick="buttonClicked('Trace')">Console Trace</button>
+      <button onclick="buttonClicked('Global Error')">Trigger a Global Error</button>
     </section>
   </main>
 
@@ -102,6 +102,15 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    function buttonClicked(type){
+      switch(type){
+        case 'Log':
+          console.log('Oranges are $0.59 a pound.');
+          break;
+        default:
+          console.log(`Uh Oh`);
+      }
+    }
   </script>
 </body>
 
