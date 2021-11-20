@@ -116,6 +116,41 @@
         case 'Warn':
           console.warn('Using "Console Warn"');
           break;
+        case 'Assert':
+          console.assert('Using "Console Assert"');
+          break;
+        case 'Clear':
+          console.clear('Using "Console Clear"');
+          break;
+        case 'Dir':
+          console.dir('Using "Console Dir"');
+          break;
+        case 'dirxml':
+          console.dirxml('Using "Console dirxml"');
+          break;
+        case 'Group Start':
+          console.group('Using "Group Group Start"');
+          break;
+        case 'Group End':
+          console.groupEnd('Using "Console Group End"');
+          break;
+        case 'Table':
+          console.table('Using "Console Table"');
+          break;
+        case 'Start Timer':
+          console.time('Using "Console Start Timer"');
+          break;
+        case 'End Timer':
+          console.timeEnd('Using "Console End Timer"');
+          break;
+        case 'Trace':
+          console.trace('Using "Console Trace"');
+          break;
+        case 'Global Error':
+          console.log('Causing a "Global Error"');
+          const toastFactory = "Hello";
+          toastFactory = "Oh No!";
+          break;
         default:
           console.log(`Uh Oh. This was not suppose to happen...`);
       }
