@@ -105,10 +105,19 @@
     function buttonClicked(type){
       switch(type){
         case 'Log':
-          console.log('Oranges are $0.59 a pound.');
+          console.log('Using "Console Log"');
+          break;
+        case 'Error':
+          console.error('Using "Console Error"');
+          break;
+        case 'Count':
+          console.count('Using "Console Count"');
+          break;
+        case 'Warn':
+          console.warn('Using "Console Warn"');
           break;
         default:
-          console.log(`Uh Oh`);
+          console.log(`Uh Oh. This was not suppose to happen...`);
       }
     }
   </script>
