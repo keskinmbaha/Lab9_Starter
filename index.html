@@ -88,10 +88,10 @@
   </main>
 
   <script>
-    class DoNotPressThisButton extends Error{
+    class SecondNotNum extends Error{
       constructor(message){
         super(message);
-        this.name = "DoNotPressThisButton";
+        this.name = "SecondNotNum";
       }
     }
 
@@ -99,18 +99,33 @@
 
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
+      e.preventDefault();
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+
       try{
-        e.preventDefault();
-        let output = document.querySelector('output');
-        let firstNum = document.querySelector('#first-num').value;
-        let secondNum = document.querySelector('#second-num').value;
-        let operator = document.querySelector('#operator').value;
-        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+        eval(`${firstNum} + 0`);
       } catch(err){
-        console.log("An error my friend. Only numbers please.");
+        console.log('Use a number for field 1 please.');
         console.error(err);
+        return;
       }
-      
+
+      try{
+        eval(`${secondNum} + 0`);
+      } catch(err){
+        try{
+          throw new SecondNotNum("2nd field was not a number.");
+        } catch(err){
+          console.log("Use a number for field 2 please.");
+          console.error(err);
+          return;
+        }
+      }
+
+      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -169,22 +184,8 @@
           foo();
           break;
         case 'Global Error':
-          try{
-            toastFactory;
-          } catch(err){
-            try{
-              throw new DoNotPressThisButton("Why did you press this button? Its still in development.");
-            } catch(err2){
-              console.error(err2);
-              console.log("What is a toast factory called?");
-              console.log("A toaster.");
-            }
-          } finally{
-            console.log("Oh.");
-          }
+          toastFactory;
           break;
-        default:
-          console.log(`Uh Oh. This was not suppose to happen...`);
       }
     }
   </script>
