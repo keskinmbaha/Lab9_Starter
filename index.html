@@ -88,16 +88,33 @@
   </main>
 
   <script>
+    class NumberOnlyError extends Error{
+      constructor(message){
+        super(message);
+        this.name = "NumberOnlyError";
+      }
+    }
+
     var timer;
 
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
-      e.preventDefault();
-      let output = document.querySelector('output');
-      let firstNum = document.querySelector('#first-num').value;
-      let secondNum = document.querySelector('#second-num').value;
-      let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      try{
+        e.preventDefault();
+        let output = document.querySelector('output');
+        let firstNum = document.querySelector('#first-num').value;
+        let secondNum = document.querySelector('#second-num').value;
+        let operator = document.querySelector('#operator').value;
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      } catch(err){
+        try{
+          throw new NumberOnlyError("Numbers only my friend.");
+        }
+        catch(err2){
+          console.error(err2);
+        }
+      }
+      
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -131,11 +148,9 @@
           console.dirxml(document.querySelector("fieldset"));
           break;
         case 'Group Start':
-          console.log('Using "Group Group Start"');
           console.group();
           break;
         case 'Group End':
-          console.log('Using "Console Group End"')
           console.groupEnd();
           break;
         case 'Table':
@@ -158,9 +173,19 @@
           foo();
           break;
         case 'Global Error':
-          console.log('Causing a "Global Error"');
-          const toastFactory = "Hello";
-          toastFactory = "Oh No!";
+          try{
+            toastFactory;
+          } catch(err){
+            try{
+              console.error(err);
+              console.log("What is a toast factory?");
+              throw err;
+            } catch(err2){
+              console.log("Its a toaster.");
+            }
+          } finally{
+            console.log("Oh.");
+          }
           break;
         default:
           console.log(`Uh Oh. This was not suppose to happen...`);
