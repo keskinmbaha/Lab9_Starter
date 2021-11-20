@@ -5,6 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "eaa08323601d4c498d238da4e83be0c1"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>  
   <title>Lab 9</title>
 
   <style>
@@ -85,8 +92,7 @@
       <button onclick="buttonClicked('Trace')">Console Trace</button>
       <button onclick="buttonClicked('Global Error')">Trigger a Global Error</button>
     </section>
-  </main>
-
+  </main>               
   <script>
     class SecondNotNum extends Error{
       constructor(message){
@@ -106,23 +112,17 @@
       let operator = document.querySelector('#operator').value;
 
       try{
-        eval(`${firstNum} + 0`);
+        eval(`${firstNum} + 2`);
       } catch(err){
         console.log('Use a number for field 1 please.');
-        console.error(err);
-        return;
+        throw new Error("First field not a number");
       }
 
       try{
-        eval(`${secondNum} + 0`);
+        eval(`${secondNum} + 2`);
       } catch(err){
-        try{
-          throw new SecondNotNum("2nd field was not a number.");
-        } catch(err){
-          console.log("Use a number for field 2 please.");
-          console.error(err);
-          return;
-        }
+        console.log('Use a number for field 2 please.');
+        throw new SecondNotNum("Second field not a number");
       }
 
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
