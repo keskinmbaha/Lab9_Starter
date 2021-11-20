@@ -116,6 +116,8 @@
       } catch(err){
         console.log('Use a number for field 1 please.');
         throw new Error("First field not a number");
+      } finally {
+        console.log("Using finally");
       }
 
       try{
