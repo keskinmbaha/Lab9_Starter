@@ -88,10 +88,10 @@
   </main>
 
   <script>
-    class NumberOnlyError extends Error{
+    class DoNotPressThisButton extends Error{
       constructor(message){
         super(message);
-        this.name = "NumberOnlyError";
+        this.name = "DoNotPressThisButton";
       }
     }
 
@@ -107,12 +107,8 @@
         let operator = document.querySelector('#operator').value;
         output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
       } catch(err){
-        try{
-          throw new NumberOnlyError("Numbers only my friend.");
-        }
-        catch(err2){
-          console.error(err2);
-        }
+        console.log("An error my friend. Only numbers please.");
+        console.error(err);
       }
       
     });
@@ -177,11 +173,11 @@
             toastFactory;
           } catch(err){
             try{
-              console.error(err);
-              console.log("What is a toast factory?");
-              throw err;
+              throw new DoNotPressThisButton("Why did you press this button? Its still in development.");
             } catch(err2){
-              console.log("Its a toaster.");
+              console.error(err2);
+              console.log("What is a toast factory called?");
+              console.log("A toaster.");
             }
           } finally{
             console.log("Oh.");
